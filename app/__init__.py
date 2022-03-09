@@ -9,3 +9,6 @@ app = Flask(__name__)
 
 #tell app how it should be configured -- on config.py file
 app.config.from_object(Config)
+
+
+from . import routes

@@ -1,9 +1,30 @@
 {% extends 'components/layout.html' %}
 
 {% block leftcol %}
-<h1>Hello Cameron</h1>
+<div class="card">
+    <div class="card-header">
+      The 2022 Western Conference NBA All-Stars
+    </div>
+    <ul class="list-group list-group-flush">
+        
+        {% for name in westas %}
+        <li class="list-group-item">{{ name.title() }} </li>
+        {% endfor %}
+    </ul>
+  </div>
 {% endblock leftcol %}
 
 {% block rightcol %}
-<h2>Hello Right</h2>
+<h1>The 2022 Eastern Conference All-Stars</h1>
+{% for name in eastas %}
+<div class="card" style="width: 18rem;">
+    <div class="card-body">
+      <h5 class="card-title">{{ name.title() }}</h5>
+      <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
+      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+      <a href="#" class="card-link">Card link</a>
+      <a href="#" class="card-link">Another link</a>
+    </div>
+  </div>
+  {% endfor %}
 {% endblock rightcol %}

@@ -8,7 +8,6 @@ from flask import render_template
 
 @app.route('/')
 def home():
-    print('Hello 2 u')
     return render_template('index.html')
 
 

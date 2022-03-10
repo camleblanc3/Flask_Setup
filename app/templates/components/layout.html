@@ -35,7 +35,13 @@
         </div>
       </nav>
       <div class="container-fluid">
-          <div class="row">
+        <div class="row">
+            <div class="col">
+                {% block col %}
+                {% endblock col %}
+            </div>
+        </div>  
+        <div class="row">
               <div class="col">
                   {% block leftcol %}
                   {% endblock leftcol %}

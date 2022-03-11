@@ -5,7 +5,8 @@ from flask import Flask
 from config import Config
 
 #define Flask object
-app = Flask(__name__)
+app = Flask(__name__, static_url_path = '/static', static_folder ='static')
+
 
 #tell app how it should be configured -- on config.py file
 app.config.from_object(Config)

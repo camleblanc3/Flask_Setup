@@ -6,6 +6,8 @@ from app import app
 
 from flask import render_template
 
+from .services import pokeJersey
+
 @app.route('/')
 def home():
     westas = ['lebron james', 'stephen curry', 'andrew wiggins', 'ja morant', 'nikola jokic', 'devin booker', 'rudy gobert', 'chris paul', 'draymond green', 'donovan mitchell', 'luka doncic', ' dejounte murray', 'karl-anthony towns']
@@ -15,4 +17,5 @@ def home():
 
 @app.route('/page')
 def page():
-    return render_template('page.html')
+    poke = pokeJersey()
+    return render_template('page.html', poke=poke)

@@ -1,2 +1,12 @@
 {% extends 'components/layout.html' %}
-<h1>This is the second page!</h1>
+
+{% block leftcol %}
+<table>
+    {% for key, value in poke.iteritems() %}
+       <tr>
+            <th> {{ key }} </th>
+            <td> {{ value }} </td>
+       </tr>
+    {% endfor %}
+</table>
+{% endblock leftcol %}

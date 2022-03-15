@@ -23,10 +23,10 @@ def home():
 def page():
     form = PokeForm()
     if request.method == 'POST':
-        data = r.get(f'https://pokeapi.co/api/v2/pokemon/{form.pokename.data}').json()
-        if data['name'] != 0:
+        try:
+            data = r.get(f'https://pokeapi.co/api/v2/pokemon/{form.pokename.data}').json()
             poke = data
-        else:
+        except:
             poke = form.pokename.data
         return render_template('page.html', form = form, poke = poke)
     return render_template('page.html', form = form, poke = None)

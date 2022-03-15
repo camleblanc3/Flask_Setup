@@ -2,11 +2,14 @@
 #generl structure of flask route is a function with a decorator
 
 #first route: display index.html when user navigates to base url
+
 from app import app
 
 from flask import render_template
+from .forms import PokeForm
 
 from .services import pokeJersey
+import requests as r
 
 @app.route('/')
 def home():
@@ -15,7 +18,14 @@ def home():
     return render_template('index.html', westas = westas, eastas = eastas)
 
 
-@app.route('/page')
+@app.route('/page', methods=['GET', 'POST'])
 def page():
-    poke = pokeJersey()
-    return render_template('page.html', poke=poke)
+    form = PokeForm()
+    if request.method == 'POST':
+        data = r.get(f'https://pokeapi.co/api/v2/pokemon/{form.pokename.data}.json').json()
+        if data['name'] != 0:
+            poke = data
+        else:
+            poke = form.pokename.data
+        return render_template('page.html', form = form, poke = poke)
+    return render_template('page.html', form = form, poke = None)

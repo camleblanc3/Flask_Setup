@@ -1,20 +1,41 @@
 {% extends 'components/layout.html' %}
 
-{% block leftcol %}
-<table>
-    <thead>
-      <tr>
-        <th>Key</th>
-        <th>Value</th>
-      </tr>
-    </thead>
-    <tbody>
-    {% for key, value in poke.items() %}
-     <tr>
-         <td> {{ key }} </td>
-         <td> {{ value }} </td>
-     </tr>
-    {% endfor %}
-    </tbody>
-  </table>
-{% endblock leftcol %}
+{% block col %}
+<div class="row justify-content-center">
+    <div class="col-6">
+        <form class="form-inline" method="POST">
+            {{ form.hidden_tag() }}
+            <div class="form-group">
+                {{ form.pokename(class="mr-3 form-control", placeholder="Poke") }}
+            </div>
+            {{ form.submit(class="btn btn-info") }}
+        </form>
+        <small id="pokeHelp" class="form-text text-muted">Submit ID for pokemon to see stats.</small>
+    </div>
+</div>
+<div class="row justify-content-center">
+    <div class="col-8">
+        {% if poke is string %}
+            <h3>There are no Pokemon with the ID {{ poke }}.</h3>
+        {% elif poke %}
+        <div class="card">
+            <div class="card-header">
+                Pokemon Information:
+            </div>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">ID:<span class='float-right'>{{ poke['id'] }} {{ driver['code'] }}</span></li>
+                <li class="list-group-item">Name:<span class='float-right'>{{ poke['name'] }}</span></li>
+                <li class="list-group-item">Height:<span class='float-right'>{{ poke['height'] }}</span></li>
+                <li class="list-group-item">Ability:<span class='float-right'>{{ poke['abilities'][0]['ability']['name'] }}</span></li>
+                <li class="list-group-item">Type:<span class='float-right'>{{ poke['types'][0]['type']['name'] }}</span></li>
+            </ul>
+        </div>
+        {% endif %}
+    </div>
+</div>
+
+
+
+
+
+{% endblock col %}

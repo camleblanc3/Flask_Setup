@@ -9,7 +9,7 @@ from app import app
 from flask import render_template,request
 from .forms import PokeForm
 
-from .services import pokeJersey
+
 import requests as r
 
 @app.route('/')

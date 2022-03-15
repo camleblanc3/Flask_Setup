@@ -3,9 +3,10 @@
 
 #first route: display index.html when user navigates to base url
 
+
 from app import app
 
-from flask import render_template
+from flask import render_template,request
 from .forms import PokeForm
 
 from .services import pokeJersey
@@ -22,7 +23,7 @@ def home():
 def page():
     form = PokeForm()
     if request.method == 'POST':
-        data = r.get(f'https://pokeapi.co/api/v2/pokemon/{form.pokename.data}.json').json()
+        data = r.get(f'https://pokeapi.co/api/v2/pokemon/{form.pokename.data}').json()
         if data['name'] != 0:
             poke = data
         else:
